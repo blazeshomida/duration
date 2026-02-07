@@ -20,11 +20,12 @@
   },
   "tasks": {
     "fmt": "deno fmt",
+    "fmt:check": "deno fmt --check",
     "lint": "deno lint",
     "doc:lint": "deno doc --lint mod.ts",
     "check": "deno check mod.ts duration.ts",
     "test": "deno test",
-    "verify": "deno task fmt && deno task lint && deno task doc:lint && deno task check && deno task test",
+    "verify": "deno task fmt:check && deno task lint && deno task doc:lint && deno task check && deno task test",
     "publish:dry-run": "deno publish --dry-run",
     "changelog:unreleased": "git-cliff --config .git-cliff.toml --unreleased --strip all",
     "changelog": "git-cliff --config .git-cliff.toml --output CHANGELOG.md"
