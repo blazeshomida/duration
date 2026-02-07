@@ -1,0 +1,12 @@
+{
+  "license": "MIT",
+  "exclude": [
+    "gist/"
+  ],
+  "tasks": {
+    "fmt": "deno fmt",
+    "verify": "deno task fmt",
+    "changelog:unreleased": "git-cliff --config .git-cliff.toml --unreleased --strip all",
+    "changelog": "git-cliff --config .git-cliff.toml --output CHANGELOG.md"
+  }
+}

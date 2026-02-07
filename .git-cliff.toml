@@ -1,0 +1,46 @@
+[changelog]
+header = """
+# Changelog
+
+All notable changes to this project are documented in this file.
+Entries are generated from commit history using git-cliff.
+"""
+body = """
+{% if version -%}
+## {{ version }} - {{ timestamp | date(format="%Y-%m-%d") }}
+{% else -%}
+## Unreleased
+{% endif -%}
+{% for group, commits in commits | group_by(attribute="group") %}
+### {{ group }}
+{% for commit in commits %}
+- {{ commit.message | trim }}
+{% endfor %}
+{% endfor %}
+
+"""
+trim = true
+footer = ""
+
+[git]
+conventional_commits = false
+filter_unconventional = false
+split_commits = false
+
+commit_parsers = [
+  { message = '^chore\(\*\):\s*🎉\s*release v\d+\.\d+\.\d+$', skip = true },
+  { message = '^BREAKING\([^)]+\):', group = "Breaking Changes" },
+  { message = '^feat\([^)]+\):', group = "Features" },
+  { message = '^fix\([^)]+\):', group = "Bug Fixes" },
+  { message = '^perf\([^)]+\):', group = "Performance" },
+  { message = '^deprecation\([^)]+\):', group = "Deprecations" },
+  { message = '^docs\([^)]+\):', group = "Documentation" },
+  { message = '^refactor\([^)]+\):', group = "Refactors" },
+  { message = '^test\([^)]+\):', group = "Tests" },
+  { message = '^style\([^)]+\):', group = "Style" },
+  { message = '^chore\([^)]+\):', group = "Chores" }
+]
+
+tag_pattern = '^v\d+\.\d+\.\d+$'
+topo_order = false
+sort_commits = "oldest"
