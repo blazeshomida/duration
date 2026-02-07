@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Features
+
+- feat(core): ✨ align factory names with instance conversion methods
+
+## v0.1.1 - 2026-02-07
+
 ### Bug Fixes
 
 - fix(ci): 🐛 avoid dirty workspace during publish dry-run
