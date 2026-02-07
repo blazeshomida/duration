@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Bug Fixes
+
+- fix(ci): 🐛 avoid dirty workspace during publish dry-run
+
+## v0.1.0 - 2026-02-07
+
 ### Chores
 
 - chore(*): 🎉 initialize repository scaffolding
