@@ -66,6 +66,14 @@ This project is active and targeting its initial `0.1.0` JSR release.
 For release note generation, install `git-cliff` (for example:
 `brew install git-cliff`) and run `deno task changelog`.
 
+## Development
+
+```sh
+deno task verify
+deno task publish:dry-run
+deno task changelog:unreleased
+```
+
 ## License
 
 MIT
