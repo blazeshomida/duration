@@ -44,7 +44,7 @@ export type RoundingMode = "round" | "floor" | "ceil";
  *
  * @example
  * ```ts
- * const total = Duration.hours(2).add(Duration.minutes(30));
+ * const total = Duration.hrs(2).add(Duration.mins(30));
  * console.log(total.mins()); // 150
  * ```
  */
@@ -109,28 +109,28 @@ export class Duration {
   /**
    * Create a duration from milliseconds.
    */
-  static milliseconds(milliseconds: number): Duration {
+  static ms(milliseconds: number): Duration {
     return new Duration(milliseconds);
   }
 
   /**
    * Create a duration from seconds.
    */
-  static seconds(seconds: number): Duration {
+  static secs(seconds: number): Duration {
     return new Duration(seconds * Duration.MS_PER_SECOND);
   }
 
   /**
    * Create a duration from minutes.
    */
-  static minutes(minutes: number): Duration {
+  static mins(minutes: number): Duration {
     return new Duration(minutes * Duration.MS_PER_MINUTE);
   }
 
   /**
    * Create a duration from hours.
    */
-  static hours(hours: number): Duration {
+  static hrs(hours: number): Duration {
     return new Duration(hours * Duration.MS_PER_HOUR);
   }
 
@@ -362,7 +362,7 @@ export class Duration {
    *
    * @example
    * ```ts
-   * Duration.hours(1).add(Duration.minutes(5)).format(); // "1h 5m"
+   * Duration.hrs(1).add(Duration.mins(5)).format(); // "1h 5m"
    * ```
    */
   format(): string {

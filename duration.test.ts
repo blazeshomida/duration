@@ -33,10 +33,10 @@ function assertThrows(fn: () => void, expectedMessagePart: string): void {
 }
 
 Deno.test("creates durations from static factories", () => {
-  assertEqual(Duration.milliseconds(500).ms(), 500);
-  assertEqual(Duration.seconds(2).ms(), 2000);
-  assertEqual(Duration.minutes(2).ms(), 120000);
-  assertEqual(Duration.hours(1).ms(), 3600000);
+  assertEqual(Duration.ms(500).ms(), 500);
+  assertEqual(Duration.secs(2).ms(), 2000);
+  assertEqual(Duration.mins(2).ms(), 120000);
+  assertEqual(Duration.hrs(1).ms(), 3600000);
   assertEqual(Duration.days(1).ms(), 86400000);
   assertEqual(Duration.weeks(1).ms(), 604800000);
   assertEqual(Duration.months(1).ms(), 2592000000);
@@ -44,24 +44,24 @@ Deno.test("creates durations from static factories", () => {
 });
 
 Deno.test("converts between units with rounding options", () => {
-  assertEqual(Duration.seconds(90).mins(), 1.5);
-  assertEqual(Duration.minutes(90).hrs(), 1.5);
-  assertEqual(Duration.seconds(1.23456).secs({ precision: 2 }), 1.23);
+  assertEqual(Duration.secs(90).mins(), 1.5);
+  assertEqual(Duration.mins(90).hrs(), 1.5);
+  assertEqual(Duration.secs(1.23456).secs({ precision: 2 }), 1.23);
   assertEqual(
-    Duration.seconds(1.23456).secs({ precision: 2, rounding: "floor" }),
+    Duration.secs(1.23456).secs({ precision: 2, rounding: "floor" }),
     1.23,
   );
   assertEqual(
-    Duration.seconds(1.23456).secs({ precision: 2, rounding: "ceil" }),
+    Duration.secs(1.23456).secs({ precision: 2, rounding: "ceil" }),
     1.24,
   );
 });
 
 Deno.test("parses valid duration strings", () => {
   const parsed = Duration.parse("1h 30m 15s");
-  const expected = Duration.hours(1)
-    .add(Duration.minutes(30))
-    .add(Duration.seconds(15));
+  const expected = Duration.hrs(1)
+    .add(Duration.mins(30))
+    .add(Duration.secs(15));
   assertEqual(parsed.ms(), expected.ms());
 });
 
@@ -89,8 +89,8 @@ Deno.test("parse can allow partial input", () => {
 });
 
 Deno.test("supports arithmetic operations", () => {
-  const a = Duration.minutes(30);
-  const b = Duration.minutes(15);
+  const a = Duration.mins(30);
+  const b = Duration.mins(15);
 
   assertEqual(a.add(b).mins(), 45);
   assertEqual(a.sub(b).mins(), 15);
@@ -100,9 +100,9 @@ Deno.test("supports arithmetic operations", () => {
 });
 
 Deno.test("supports comparison methods", () => {
-  const a = Duration.minutes(30);
-  const b = Duration.minutes(15);
-  const c = Duration.minutes(30);
+  const a = Duration.mins(30);
+  const b = Duration.mins(15);
+  const c = Duration.mins(30);
 
   assertEqual(a.eq(c), true);
   assertEqual(a.eq(b), false);
@@ -113,18 +113,18 @@ Deno.test("supports comparison methods", () => {
 });
 
 Deno.test("formats durations and handles negatives", () => {
-  const positive = Duration.hours(1)
-    .add(Duration.minutes(30))
-    .add(Duration.seconds(15));
+  const positive = Duration.hrs(1)
+    .add(Duration.mins(30))
+    .add(Duration.secs(15));
   assertEqual(positive.format(), "1h 30m 15s");
 
-  const negative = Duration.minutes(-90);
+  const negative = Duration.mins(-90);
   assertEqual(negative.format(), "-1h 30m");
 
-  assertEqual(Duration.milliseconds(0).format(), "0ms");
+  assertEqual(Duration.ms(0).format(), "0ms");
 });
 
 Deno.test("supports utility methods", () => {
-  assertEqual(Duration.milliseconds(0).isZero(), true);
-  assertEqual(Duration.milliseconds(-5000).abs().ms(), 5000);
+  assertEqual(Duration.ms(0).isZero(), true);
+  assertEqual(Duration.ms(-5000).abs().ms(), 5000);
 });

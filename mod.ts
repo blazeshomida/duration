@@ -7,7 +7,7 @@
  * ```ts
  * import { Duration } from "jsr:@blazes/duration";
  *
- * const value = Duration.hours(1).add(Duration.minutes(30));
+ * const value = Duration.hrs(1).add(Duration.mins(30));
  * console.log(value.mins()); // 90
  * ```
  */

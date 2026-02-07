@@ -22,9 +22,9 @@ deno add jsr:@blazes/duration
 ```ts
 import { Duration } from "jsr:@blazes/duration";
 
-const total = Duration.hours(1)
-  .add(Duration.minutes(30))
-  .add(Duration.seconds(15));
+const total = Duration.hrs(1)
+  .add(Duration.mins(30))
+  .add(Duration.secs(15));
 
 console.log(total.mins()); // 90.25
 console.log(total.format()); // "1h 30m 15s"
@@ -32,14 +32,14 @@ console.log(total.format()); // "1h 30m 15s"
 
 ## Usage / API
 
-| Area        | API                                                                                                                                                       |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Factories   | `Duration.milliseconds`, `Duration.seconds`, `Duration.minutes`, `Duration.hours`, `Duration.days`, `Duration.weeks`, `Duration.months`, `Duration.years` |
-| Parsing     | `Duration.parse(input, { strict, allowPartial })`                                                                                                         |
-| Conversions | `ms`, `secs`, `mins`, `hrs`, `days`, `weeks`, `months`, `years`                                                                                           |
-| Arithmetic  | `add`, `sub`, `mul`, `div`                                                                                                                                |
-| Comparison  | `eq`, `lt`, `lte`, `gt`, `gte`                                                                                                                            |
-| Utilities   | `isZero`, `abs`, `format`                                                                                                                                 |
+| Area        | API                                                                                                                                     |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Factories   | `Duration.ms`, `Duration.secs`, `Duration.mins`, `Duration.hrs`, `Duration.days`, `Duration.weeks`, `Duration.months`, `Duration.years` |
+| Parsing     | `Duration.parse(input, { strict, allowPartial })`                                                                                       |
+| Conversions | `ms`, `secs`, `mins`, `hrs`, `days`, `weeks`, `months`, `years`                                                                         |
+| Arithmetic  | `add`, `sub`, `mul`, `div`                                                                                                              |
+| Comparison  | `eq`, `lt`, `lte`, `gt`, `gte`                                                                                                          |
+| Utilities   | `isZero`, `abs`, `format`                                                                                                               |
 
 ## Examples
 
@@ -49,13 +49,13 @@ import { Duration } from "jsr:@blazes/duration";
 const parsed = Duration.parse("2h 45m");
 console.log(parsed.mins()); // 165
 
-const rounded = Duration.seconds(1.23456).secs({
+const rounded = Duration.secs(1.23456).secs({
   precision: 2,
   rounding: "ceil",
 });
 console.log(rounded); // 1.24
 
-const negative = Duration.minutes(-90);
+const negative = Duration.mins(-90);
 console.log(negative.format()); // "-1h 30m"
 ```
 
